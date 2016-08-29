@@ -9,7 +9,7 @@
     <version>1.6.1</version>
     <packaging>pom</packaging>
 
-    <name>AuthMeBridge</name>
+    <name>AuthMeBridge suite</name>
     <description>Bungeecord addon for AuthMe and xAuth!</description>
     <inceptionYear>2014</inceptionYear>
     <url>https://www.spigotmc.org/resources/authmebridge-for-bungeecord.574/</url>

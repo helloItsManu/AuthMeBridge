@@ -89,7 +89,7 @@
             </exclusions>
         </dependency>
 
-        <!-- XAuth, another authentication plugin, required by the database converter -->
+        <!-- XAuth -->
         <dependency>
             <groupId>de.luricos.bukkit</groupId>
             <artifactId>xAuth</artifactId>
