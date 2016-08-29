@@ -6,7 +6,7 @@
 /*   By: CryLegend <crylegend95@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/25 18:31:32 by CryLegend         #+#    #+#             */
-/*   Updated: 2016/03/25 18:31:34 by CryLegend        ###   ########.fr       */
+/*   Updated: 2016/08/29 19:08:01 by CryLegend        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,10 @@ public class PlayerListener implements Listener {
 			return;
 		
 		if (event.isCommand()) {
+			// Check if command usage is forbidden while not logged in
+			if (!Settings.commandsRequiresAuth)
+				return;
+			
 			String command = event.getMessage().split(" ")[0];
 			
 			// Check if command is an AuthMe command
@@ -70,13 +74,29 @@ public class PlayerListener implements Listener {
 			if (Settings.commandsWhitelist.contains(command))
 				return;
 		}
+		else {
+			// Check if chat usage is forbidden while not logged in
+			if (!Settings.chatRequiresAuth)
+				return;
+		}
 		
 		ProxiedPlayer proxiedPlayer = (ProxiedPlayer) event.getSender();
 		AuthPlayer player = BridgeAPI.getPlayersManager().getPlayer(proxiedPlayer);
 		
 		// If player is not logged in, cancel the event
-		if (!player.isLoggedIn())
+		if (!player.isLoggedIn()) {
 			event.setCancelled(true);
+			
+			// Add compatibility for BungeeChat plugin (dirty way)
+			try {
+				// Check if BungeeChat is loaded: if not, an exception is thrown
+				Class.forName("mcplugin.shawn_ian.bungeechat.Main");
+				
+				// If we're here, BungeeChat is loaded, so let's do some shit
+				event.setMessage("/");
+			}
+			catch( ClassNotFoundException ex ) { }
+		}
 	}
 	
 	@EventHandler
