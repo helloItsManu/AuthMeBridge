@@ -1,6 +1,6 @@
 # AuthMeBridge
 
-![AuthMeBridge](http://www.craftfriends.fr/images/AuthMeBridge.png "AuthMeBridge")
+![AuthMeBridge](https://crylegend.com/wp-content/uploads/2016/06/AuthMeBridge.png "AuthMeBridge")
 
 This plugin acts like a bridge between your bukkit servers and your BungeeCord instance. To explain simple how it works, bukkit-side plugins send a message to bungee-side on user authentication. If bungee-side doesn't receive this message, the player won't be able to talk in chat and to perform commands, including BungeeCord commands.
 
